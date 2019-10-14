@@ -42,15 +42,57 @@
     <xsl:variable name="meta">
         <head>
             <title>
-                <xsl:value-of select="/office:document/office:meta/dc:title"/>
+                <xsl:if test="/office:document/office:meta/dc:title">
+                    <xsl:value-of select="/office:document/office:meta/dc:title"/>
+                </xsl:if>
             </title>
         </head>
+    </xsl:variable>
+    
+    <xsl:variable name="metadata">
+        <div class="main-metadata" style="border: 1px solid black; padding: 1em 2em 1em 2em;">
+            <xsl:if test="/office:document/office:meta/dc:title">
+                <h2 class="title">
+                    <xsl:value-of select="/office:document/office:meta/dc:title"/>
+                </h2>
+            </xsl:if>
+            <xsl:if test="/office:document/office:meta/dc:subject">
+                <h3 class="subject">
+                <xsl:value-of select="/office:document/office:meta/dc:subject"/>
+            </h3>
+            </xsl:if>
+            <xsl:if test="/office:document/office:meta/dc:description">
+                <p class="description">
+                <xsl:value-of select="/office:document/office:meta/dc:description"/>
+            </p>
+            </xsl:if>
+        <xsl:if test="/office:document/office:meta/meta:keyword">
+            <ul>
+                <xsl:for-each select="/office:document/office:meta/meta:keyword">
+                    <li>
+                        <xsl:value-of select="."/>
+                    </li>
+                </xsl:for-each>
+            </ul>
+        </xsl:if>
+        <xsl:if test="/office:document/office:meta/meta:initial-creator">
+             <p class="description">
+                 <xsl:value-of select="/office:document/office:meta/meta:initial-creator"/>
+             </p>
+        </xsl:if>
+        <xsl:if test="/office:document/office:meta/dc:creator">
+                <p class="description">
+                    <xsl:value-of select="/office:document/office:meta/dc:creator"/>
+                </p>
+         </xsl:if>
+        </div>
     </xsl:variable>
 
     <xsl:template match="/">
         <html>
             <xsl:copy-of select="$meta"/>
             <body>
+                <xsl:copy-of select="$metadata"/>
                 <xsl:apply-templates select="office:document/office:body/office:text/child::*"/>
             </body>
         </html>
