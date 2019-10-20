@@ -1,4 +1,7 @@
 # xslt-simple-text-processing-toolbox
+
+*Important*: This repository is still work in progress.
+
 Collection of description of concepts, procedures, and simple XSLT files for text processing, e.g. simplify InDesign documents (.idml) to simplified xml, or Office formats (.fodt, .odt, .docx) to simplified XML. Subsequently the simplified XML may function as a foundation from where nested TEI-XML may be generated.
 
 The following sections explain the [scripts](#scripts) that may be used to process the source files. The scripts sections are followed by a section that exemplifies several concepts, workflows, and approaches to text processing and transformation of XML based text files into TEI-XML.
@@ -41,17 +44,20 @@ Nothing here yet …
 
 ## Using XSL-Transformation with Saxon/C in Python
 
-Since october 2019 the Saxon/C library for XSLT & XQuery processing has a native [Python](https://www.saxonica.com/saxon-c/doc/html/saxonc.html) API available (C++, Java, and [PHP](http://www.saxonica.com/saxon-c/doc/html/index.html#php-api) APIs are available as well, see [here](http://www.saxonica.com/saxon-c/index.xml)). Following, I will give a short walkthrough on how to set everything up to usage in a Jupyter Notebook:
+*Important*: Before moving, copying, and deleting file in your file system please make sure that you know what you do! Erratic moving and deleting of files may have disastrous consequences! The walkthrough below is based on my own file system and system setup and should only be used as a guideline and in a reasonable way.
+
+Since october 2019 the Saxon/C library for XSLT & XQuery processing has a native [Python](https://www.saxonica.com/saxon-c/doc/html/saxonc.html) API available (C++, Java, and [PHP](http://www.saxonica.com/saxon-c/doc/html/index.html#php-api) APIs are available as well, see [here](http://www.saxonica.com/saxon-c/index.xml)). Following, I will give a short walkthrough on how one may set everything up to usage in a Jupyter Notebook (the walkthrough follows the information provided with the Saxon/C library):
 
 1. Installing Python 3 and the Jupyter library.
     1. Download and install Python from the [official website](https://www.python.org/downloads/) (Don’t forget to let the installer add Python to the PATH-variable).
     1. [Install](https://jupyter.org/install) the Jupyter library, e.g. via PIP: `pip3 install jupyter`.
-1. Installing Saxon/C for Python on MacOS.
+    1. [Install](https://pypi.org/project/Cython/) the Cython library, e.g. `pip3 install Cython`
+1. Installing Saxon/C for Python on MacOS (*please consult the README file distributed with the Saxon/C library as well*).
     1. Download the Saxon/C-HE ZIP-file from the [Saxonica-website](http://www.saxonica.com/download/c.xml).
-    1. Create a temporary folder for the files, e.g.: `mkdir temp_saxon`
     1. Navigate into your Downloads folder: `cd ~/Downloads/`
+    1. Create a temporary folder for the files, e.g.: `mkdir temp_saxon`
     1. Move the ZIP-file into the temporary folder: `mv libsaxon-HEC-mac-setup-v1.2.0.zip temp_saxon/`
-    1. Move into the temporary folder `cd temp_saxon` and Extract the ZIP-file, e.g.: `unzip libsaxon-HEC-mac-setup-v1.2.0.zip`
+    1. Move into the temporary folder `cd temp_saxon` and extract the ZIP-file, e.g.: `unzip libsaxon-HEC-mac-setup-v1.2.0.zip`
     1. move the files into your `/usr/local/lib/` folder:
         1. `cp libsaxonhec.dylib /usr/local/lib/`
         1. `cp -r rt /usr/local/lib/`
@@ -71,7 +77,7 @@ Since october 2019 the Saxon/C library for XSLT & XQuery processing has a native
 ```Python
 # import the sys library to be able to append your Saxon/C Python API folder to the library loading path
 import sys
-sys.path.append("/Users/user/python-saxon")
+sys.path.append("/Users/houzi/python-saxon")
 # import the Saxon/C library
 import saxonc
 # import other libraries you may need, e.g. JSON
