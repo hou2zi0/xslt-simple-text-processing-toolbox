@@ -10,7 +10,9 @@
     - [Mark Down (MD)](#mark-down-md)
 - [Workflows & Concepts](#workflows--concepts)
 - [Using XSL-Transformation with Saxon/C in Python](#using-xsl-transformation-with-saxonc-in-python)
+    - [MacOS](#macos)
     - [Using XSLT files in Saxon/C Python API](#using-xslt-files-in-saxonc-python-api)
+- [License](#license)
 <!-- TOC END -->
 
 
@@ -66,7 +68,9 @@ Nothing here yet …
 
 *Important*: Before moving, copying, and deleting file in your file system please make sure that you know what you do! Erratic moving and deleting of files may have disastrous consequences! The walkthrough below is based on my own file system and system setup and should only be used as a guideline and in a reasonable way.
 
-Since october 2019 the Saxon/C library for XSLT & XQuery processing has a native [Python](https://www.saxonica.com/saxon-c/doc/html/saxonc.html) API available (C++, Java, and [PHP](http://www.saxonica.com/saxon-c/doc/html/index.html#php-api) APIs are available as well, see [here](http://www.saxonica.com/saxon-c/index.xml)). Following, I will give a short walkthrough on how one may set everything up to usage in a Jupyter Notebook (the walkthrough follows the information provided with the Saxon/C library):
+### MacOS
+
+Since october 2019 the Saxon/C library for XSLT & XQuery processing has a native [Python](https://www.saxonica.com/saxon-c/doc/html/saxonc.html) API available (C++, Java, and [PHP](http://www.saxonica.com/saxon-c/doc/html/index.html#php-api) APIs are available as well, see [here](http://www.saxonica.com/saxon-c/index.xml)). Following, I will give a short walkthrough on how one may set everything up on MacOS to usage in a Jupyter Notebook (the walkthrough follows the information provided with the Saxon/C library):
 
 1. Installing Python 3 and the Jupyter library.
     1. Download and install Python from the [official website](https://www.python.org/downloads/) (Don’t forget to let the installer add Python to the PATH-variable).
