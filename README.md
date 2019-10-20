@@ -2,11 +2,26 @@
 
 *Important*: This repository is still work in progress.
 
+<!-- TOC START min:1 max:3 link:true asterisk:false update:false -->
+- [Scripts](#scripts)
+    - [Flat Open Document (FODT)](#flat-open-document-fodt)
+    - [MS Word (DOCX)](#ms-word-docx)
+    - [InDesign Markup Languag (IDML)](#indesign-markup-languag-idml)
+    - [Mark Down (MD)](#mark-down-md)
+- [Workflows & Concepts](#workflows--concepts)
+- [Using XSL-Transformation with Saxon/C in Python](#using-xsl-transformation-with-saxonc-in-python)
+    - [Using XSLT files in Saxon/C Python API](#using-xslt-files-in-saxonc-python-api)
+<!-- TOC END -->
+
+
+
 Collection of description of concepts, procedures, and simple XSLT files for text processing, e.g. simplify InDesign documents (.idml) to simplified xml, or Office formats (.fodt, .odt, .docx) to simplified XML. Subsequently the simplified XML may function as a foundation from where nested TEI-XML may be generated.
 
 The following sections explain the [scripts](#scripts) that may be used to process the source files. The scripts sections are followed by a section that exemplifies several concepts, workflows, and approaches to text processing and transformation of XML based text files into TEI-XML.
 
 ## Scripts
+
+The scripts are organised in folder that follow the following convention: `input_format/software/output_format/xslt_file.xsl`
 
 ### Flat Open Document (FODT)
 
@@ -14,13 +29,18 @@ The following sections explain the [scripts](#scripts) that may be used to proce
 
 #### Transformation to Base XML
 
-* `fodt2base_XML_elements.xsl`
-* `fodt2base_XML_elements_attributes.xsl`
-* `fodt2base_XML_complex.xsl`
+* `fodt2base_XML_elements.xsl` (oxygen, saxon)
+* `fodt2base_XML_elements_attributes.xsl` (oxygen, saxon)
+* `fodt2base_XML_complex.xsl` (oxygen)
 
 #### Transformation to Base HTML
 
-* `fodt2base_HTML_elements_attributes.xsl`
+* `fodt2base_HTML_elements_attributes.xsl` (oxygen)
+
+#### Transformation to JSON
+
+* `fodt2base_json_elements.xsl` (saxon)
+* `fodt2base_json_reduced.xsl` (saxon)
 
 ### MS Word (DOCX)
 
@@ -32,7 +52,7 @@ The [IDML specification](https://wwwimages.adobe.com/content/dam/acom/en/devnet/
 
 #### Transformation to Base XML
 
-* `idml2base_XML.xsl.xsl`
+* `idml2base_XML.xsl.xsl` (oxygen)
 
 ### Mark Down (MD)
 
