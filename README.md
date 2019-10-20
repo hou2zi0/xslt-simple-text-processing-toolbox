@@ -65,3 +65,35 @@ Since october 2019 the Saxon/C library for XSLT & XQuery processing has a native
         1. `import sys`
         1. `sys.path.append("/Users/houzi/python-saxon")`
         1. `import saxonc`
+
+### Using XSLT files in Saxon/C Python API
+
+```Python
+# import the sys library to be able to append your Saxon/C Python API folder to the library loading path
+import sys
+sys.path.append("/Users/user/python-saxon")
+# import the Saxon/C library
+import saxonc
+# import other libraries you may need, e.g. JSON
+import json
+
+with saxonc.PySaxonProcessor(license=False) as proc:
+    print(proc.version)
+    # Initialize the XSLT 3.0. processor
+    xsltproc = proc.new_xslt30_processor()
+    # set the directory where your XML & XSLT files are located
+    xsltproc.set_cwd('docs')
+    # set the XSLT 3.0 processor’s result to a raw string
+    xsltproc.set_result_as_raw_value(True)
+    # set your source file, e.g. the XML file you want to transform, on the  XSLT 3.0 processor
+    xsltproc.set_initial_match_selection(file_name="flat_open_office_document.fodt")
+    # apply your XSLT stylesheet on the  XSLT 3.0 processor
+    result = xsltproc.apply_templates_returning_string(stylesheet_file="fodt2base_json_reduced.xsl")
+    # Write the string output to a file, e.g. to a JSON file
+    with open("test.json",'w') as file:
+        file.write(result)
+    # load the JSON string result for further work within Python
+    j = json.loads(result)
+    # Print the result
+    print(j)
+```
