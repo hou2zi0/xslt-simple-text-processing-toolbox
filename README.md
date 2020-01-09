@@ -9,6 +9,7 @@
     - [InDesign Markup Languag (IDML)](#indesign-markup-languag-idml)
     - [Mark Down (MD)](#mark-down-md)
 - [Workflows & Concepts](#workflows--concepts)
+- [A Minimal Approach to Digital Editions](#a-minimal-approach-to-digital-editions)
 - [Using XSL-Transformation with Saxon/C in Python](#using-xsl-transformation-with-saxonc-in-python)
     - [MacOS](#macos)
     - [Using XSLT files in Saxon/C Python API](#using-xslt-files-in-saxonc-python-api)
@@ -17,7 +18,7 @@
 
 
 
-Collection of description of concepts, procedures, and simple XSLT files for text processing, e.g. simplify InDesign documents (.idml) to simplified xml, or Office formats (.fodt, .odt, .docx) to simplified XML. Subsequently the simplified XML may function as a foundation from where nested TEI-XML may be generated.
+This repository collects concepts, procedures, and simple XSLT files for text processing, e.g. to simplify InDesign documents (.idml) to simplified XML, or Office formats (.fodt, .odt, .docx) to simplified XML. Subsequently the simplified XML may function as a foundation from where nested TEI-P5-XML may be generated.
 
 The following sections explain the [scripts](#scripts) that may be used to process the source files. The scripts sections are followed by a section that exemplifies several concepts, workflows, and approaches to text processing and transformation of XML based text files into TEI-XML.
 
@@ -27,7 +28,15 @@ The scripts are organised in folder that follow the following convention: `input
 
 ### Flat Open Document (FODT)
 
+The **Flat Open Document Format** ([FODT](https://en.wikipedia.org/wiki/OpenDocument_technical_specification#File_types)) is a clearly and concisely structured XML format  representing the structure of a LibreOffice text document. Every ODT/F document created by [LibreOffice](https://www.libreoffice.org/) may be saved as an FODT file.
+
+FODT contains all the **metadata**, **styles**, and **structural information** one may expect from a LibreOffice document. It’s conciseness, however, makes it **easy to transform**. The below schematic gives an overview over the basic structure of an FODT file.
+
 ![Schematic diagram FODT](concepts/en--fodt_schema.png)
+
+Contrary to ODT/F and DOCX, an FODT file is a **standalone XML file** – that may be opened and processed as such without changing the file extension – and not an archive file that bundles several (heterogenous) files.
+
+The fact that FODT is a single file format makes it especially useful for workflows that incorporate **version control** via Git or SVN.
 
 #### Transformation to Base XML
 
@@ -61,6 +70,56 @@ The [IDML specification](https://wwwimages.adobe.com/content/dam/acom/en/devnet/
 Nothing here yet …
 
 ## Workflows & Concepts
+
+### Common Formats
+
+#### Markdown
+
+
+
+#### XML
+
+
+
+#### JSON
+
+The **JavaScript Object Notation** (JSON, see [1](https://en.wikipedia.org/wiki/JSON), [2](https://www.w3schools.com/js/js_json_intro.asp), [3](https://json.org/)) provides a slim, hierarchical data structure basically consisting of **key value pairs**. **Keys** have to be **strings**, **values** may be **strings** (in `"…"`), **numbers**, **booleans**, **arrays** (aka lists, in `[…]`), or, additional, **JSON objects** (in `{…}`).
+
+A basic JSON structure modelling a bibliographical entry:
+
+```JavaScript
+{
+  "title": {
+    "main": "Digital Humanities",
+    "sub": "Eine Einführung"
+  },
+  "editors": [
+    "Jannidis, Fotis",
+    "Kohle, Hubertus",
+    "Rehbein, Malte"
+  ],
+  "published": 2017,
+  "publisher": "J.B. Metzler",
+  "chapters": [
+    {
+      "author": "Thaller, Manfred",
+      "title": "Geschichte der Digital Humanities",
+      "pages": [ 3, 12 ]
+    },
+    {
+      "author": "Thaller, Manfred",
+      "title": "Digital Humanities als Wissenschaft",
+      "pages": [ 13, 18 ]
+    }
+  ],
+  "price": {
+    "ebook": 22.99,
+    "softcover": 29.95
+  }
+}
+```
+
+### A Minimal Approach to Digital Editions
 
 ![Schematic diagram text processing to edition](concepts/en--mini_edition_workflow.png)
 
@@ -128,11 +187,13 @@ with saxonc.PySaxonProcessor(license=False) as proc:
     print(j)
 ```
 
-## License
+## Licenses
+
+### Scripts
 
 MIT License
 
-Copyright (c) 2019 猴子
+Copyright (c) 2019–2020 Max Grüntgens (猴子)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -150,3 +211,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+### Texts & Images
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
