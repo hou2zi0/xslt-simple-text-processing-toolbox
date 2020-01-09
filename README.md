@@ -1,19 +1,36 @@
-# xslt-simple-text-processing-toolbox
+# xslt-simple-text-processing-toolbox <!-- omit in toc -->
 
 *Important*: This repository is still work in progress.
 
-<!-- TOC START min:1 max:3 link:true asterisk:false update:false -->
+<!-- TOC START min:1 max:3 link:true asterisk:false update:false githubCompatibility:true -->
 - [Scripts](#scripts)
-    - [Flat Open Document (FODT)](#flat-open-document-fodt)
-    - [MS Word (DOCX)](#ms-word-docx)
-    - [InDesign Markup Languag (IDML)](#indesign-markup-languag-idml)
-    - [Mark Down (MD)](#mark-down-md)
-- [Workflows & Concepts](#workflows--concepts)
-- [A Minimal Approach to Digital Editions](#a-minimal-approach-to-digital-editions)
-- [Using XSL-Transformation with Saxon/C in Python](#using-xsl-transformation-with-saxonc-in-python)
+  - [Flat Open Document (FODT)](#flat-open-document-fodt)
+    - [Transformation to Base XML](#transformation-to-base-xml)
+    - [Transformation to Base HTML](#transformation-to-base-html)
+    - [Transformation to JSON](#transformation-to-json)
+  - [MS Word (DOCX)](#ms-word-docx)
+  - [InDesign Markup Languag (IDML)](#indesign-markup-languag-idml)
+    - [Transformation to Base XML](#transformation-to-base-xml-1)
+  - [Mark Down (MD)](#mark-down-md)
+- [Workflows &amp; Concepts](#workflows-amp-concepts)
+  - [Common Formats](#common-formats)
+    - [Markdown](#markdown)
+    - [XML](#xml)
+    - [JSON](#json)
+  - [A Minimal Approach to Digital Editions](#a-minimal-approach-to-digital-editions)
+  - [Base Bibliography](#base-bibliography)
+    - [English](#english)
+    - [German](#german)
+- [Working with XML – Software, Tools, Libraries](#working-with-xml-%e2%80%93-software-tools-libraries)
+  - [oXygen XML Editor](#oxygen-xml-editor)
+  - [Python](#python)
+  - [Using XSL-Transformation with Saxon/C in Python](#using-xsl-transformation-with-saxonc-in-python)
     - [MacOS](#macos)
     - [Using XSLT files in Saxon/C Python API](#using-xslt-files-in-saxonc-python-api)
-- [License](#license)
+  - [eXist XML Database](#exist-xml-database)
+- [Licenses](#licenses)
+  - [Scripts](#scripts-1)
+  - [Texts &amp; Images](#texts-amp-images)
 <!-- TOC END -->
 
 
@@ -83,9 +100,11 @@ Nothing here yet …
 
 #### JSON
 
-The **JavaScript Object Notation** (JSON, see [1](https://en.wikipedia.org/wiki/JSON), [2](https://www.w3schools.com/js/js_json_intro.asp), [3](https://json.org/)) provides a slim, hierarchical data structure basically consisting of **key value pairs**. **Keys** have to be **strings**, **values** may be **strings** (in `"…"`), **numbers**, **booleans**, **arrays** (aka lists, in `[…]`), or, additional, **JSON objects** (in `{…}`).
+The **JavaScript Object Notation** (JSON, see [1](https://en.wikipedia.org/wiki/JSON), [2](https://www.w3schools.com/js/js_json_intro.asp), [3](https://json.org/)) provides a slim, hierarchical data structure basically consisting of **key value pairs**.
 
-A basic JSON structure modelling a bibliographical entry:
+**Keys** have to be **strings**, **values** may be **strings** (in `"…"`), **numbers**, **booleans**, **arrays** (aka lists, in `[…]`), or, additional, **JSON objects** (in `{…}`).
+
+A basic, explanatory JSON structure modelling a bibliographical entry:
 
 ```JavaScript
 {
@@ -123,11 +142,41 @@ A basic JSON structure modelling a bibliographical entry:
 
 ![Schematic diagram text processing to edition](concepts/en--mini_edition_workflow.png)
 
-## Using XSL-Transformation with Saxon/C in Python
+### Base Bibliography
 
-*Important*: Before moving, copying, and deleting file in your file system please make sure that you know what you do! Erratic moving and deleting of files may have disastrous consequences! The walkthrough below is based on my own file system and system setup and should only be used as a guideline and in a reasonable way.
+#### English
 
-### MacOS
+* **Flanders**, Julia/**Jannidis**, Fotis (2019): _Data modeling in a digital humanities context_, in: Flanders, J./Jannidis, F.: [The Shape of Data in Digital Humanities](https://www.taylorfrancis.com/books/e/9781315552941). Modeling Texts and Text-based Resources. London, pp. 3–25.
+* **Flanders**, Julia/**Jannidis**, Fotis (2019): _A gentle introduction to data modeling_, in: Flanders, J./Jannidis, F.: [The Shape of Data in Digital Humanities](https://www.taylorfrancis.com/books/e/9781315552941). Modeling Texts and Text-based Resources. London, pp. 26–96.
+
+#### German
+
+* **Jannidis**, Fotis (2017): _Grundlagen der Datenmodellierung_, in: Jannidis, F. et al.: [Digital Humanities](https://www.springer.com/de/book/9783476026224). Eine Einführung. Stuttgart, pp. 99–108.
+* **Vogeler**, Georg/**Sahle**, Patrick (2017): _XML_, in: Jannidis, F. et al.: [Digital Humanities](https://www.springer.com/de/book/9783476026224). Eine Einführung. Stuttgart, pp. 128–146.
+
+
+## Working with XML – Software, Tools, Libraries
+
+### oXygen XML Editor
+
+The [oXygen XML Editor](https://www.oxygenxml.com/) provides one of the best prorpietary **integrated development environments** (IDE) for the development with XML and XML related technologies.
+
+Additionally, the oXygen XML Editor provides scholars with the opportunity to set up  their own **individualized working environment** by implementation of a _document type association_ (DTA). A DTA within oXygen is a bundle of configurations and configuration files, transformation scenarios, and CSS files that generate an individualized GUI overlay for editing, transforming, and querying of XML files. One well known DTA – at least in German speaking _DH_ community – is [Ediarum](http://www.bbaw.de/telota/software/ediarum).
+
+### Python
+
+* Beautiful Soup 4
+    * Docs: [https://www.crummy.com/software/BeautifulSoup/bs4/doc/](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+    * Tutorial: [https://programminghistorian.org/en/lessons/intro-to-beautiful-soup](https://programminghistorian.org/en/lessons/intro-to-beautiful-soup)
+* lxml
+    * Docs: [https://lxml.de/](https://lxml.de/)
+    * Tutorial: [https://lxml.de/tutorial.html](https://lxml.de/tutorial.html)
+
+### Using XSL-Transformation with Saxon/C in Python
+
+*Important*: Before moving, copying, and deleting files in your file system please make sure that you know what you do! Erratic moving and deleting of files may have disastrous consequences! The walkthrough below is based on my own file system and system setup and should only be used as a guideline and in a reasonable way.
+
+#### MacOS
 
 Since october 2019 the Saxon/C library for XSLT & XQuery processing has a native [Python](https://www.saxonica.com/saxon-c/doc/html/saxonc.html) API available (C++, Java, and [PHP](http://www.saxonica.com/saxon-c/doc/html/index.html#php-api) APIs are available as well, see [here](http://www.saxonica.com/saxon-c/index.xml)). Following, I will give a short walkthrough on how one may set everything up on MacOS to usage in a Jupyter Notebook (the walkthrough follows the information provided with the Saxon/C library):
 
@@ -155,7 +204,7 @@ Since october 2019 the Saxon/C library for XSLT & XQuery processing has a native
         1. `sys.path.append("/Users/houzi/python-saxon")`
         1. `import saxonc`
 
-### Using XSLT files in Saxon/C Python API
+#### Using XSLT files in Saxon/C Python API
 
 ```Python
 # import the sys library to be able to append your Saxon/C Python API folder to the library loading path
@@ -186,6 +235,11 @@ with saxonc.PySaxonProcessor(license=False) as proc:
     # Print the result
     print(j)
 ```
+
+### eXist XML Database
+
+* Docs: [http://www.exist-db.org/exist/apps/doc/](http://www.exist-db.org/exist/apps/doc/)
+* Tutorial: [https://howto.acdh.oeaw.ac.at/blog/books/how-to-build-a-digital-edition-web-app/](https://howto.acdh.oeaw.ac.at/blog/books/how-to-build-a-digital-edition-web-app/)
 
 ## Licenses
 
